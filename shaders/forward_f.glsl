@@ -5,6 +5,8 @@ in vec3 N;
 uniform sampler2D p3d_Texture0; //rgba color texture
 uniform sampler2D depth_tex;
 
+out vec4 p3d_FragData;
+
 void main()
     {
     vec2 win_size=textureSize(depth_tex, 0).xy;
@@ -14,6 +16,6 @@ void main()
     vec3 n=normalize(N);
     if (depth <  gl_FragCoord.z)
         discard;
-    gl_FragData[0]=color_map;
-    gl_FragData[1]=vec4(n, 0.0);
+    p3d_FragData=color_map;
+    p3d_FragData[1]=vec4(n, 0.0);
     }

@@ -24,6 +24,8 @@ uniform float bias;
 in vec3 N;
 in vec3 V;
 
+out vec4 p3d_FragData;
+
 // For each component of v, returns -1 if the component is < 0, else 1
 vec2 sign_not_zero(vec2 v)
     {
@@ -77,7 +79,7 @@ void main()
     vec3 albedo=color_tex.rgb;
     vec4 normal_roughness_metallic=texture(normal_tex,uv);
     vec3 N=unpack_normal_octahedron(normal_roughness_metallic.xy);
-    float roughness =pow(normal_roughness_metallic.b, 0.5);
+    float roughness=pow(normal_roughness_metallic.b, 0.5);
     float base_roughness =normal_roughness_metallic.b;
     float metallic=normal_roughness_metallic.a;
     //vec3 specular = mix(vec3(0.04), albedo, metallic);
@@ -122,6 +124,6 @@ void main()
     #endif
     final*=shadow;
 
-    gl_FragData[0]=final;
+    p3d_FragData=final;
 
     }

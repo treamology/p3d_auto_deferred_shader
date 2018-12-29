@@ -1,5 +1,5 @@
 //GLSL
-#version 130
+#version 140
 
 uniform sampler2D normal_tex;
 uniform sampler2D depth_tex;
@@ -8,6 +8,8 @@ uniform float sample_rad;
 uniform float strength;
 uniform float falloff;
 uniform float amount;
+
+out vec4 p3d_FragData;
 
 // For each component of v, returns -1 if the component is < 0, else 1
 vec2 sign_not_zero(vec2 v)
@@ -57,7 +59,7 @@ void main()
   //occlusion=0.5+occlusion*0.5;
    // occlusion=1.0-pow(pixel_depth*0.1, 2.0);
 
-  gl_FragData[0]= vec4(1.0-occlusion*0.125*amount, 0.0, 0.0, 0.0);
-  //gl_FragData[0]= vec4(occlusion, 0.0, 0.0, 0.0);
+  p3d_FragData = vec4(1.0-occlusion*0.125*amount, 0.0, 0.0, 0.0);
+  //p3d_FragData= vec4(occlusion, 0.0, 0.0, 0.0);
 }
 

@@ -5,6 +5,8 @@ uniform float blur;
 
 in vec2 uv;
 
+out vec4 p3d_FragData;
+
 void main()
     {
     vec2 pixel = vec2(1.0, 1.0)/textureSize(input_tex, 0).xy;
@@ -31,6 +33,6 @@ void main()
 
     out_tex.a=1.0;
 
-    gl_FragData[0] = out_tex;
+    p3d_FragData = out_tex;
     }
 

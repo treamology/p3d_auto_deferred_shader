@@ -27,6 +27,8 @@ uniform float bias;
 in vec3 N;
 in vec3 V;
 
+out vec4 p3d_FragData;
+
 
 // For each component of v, returns -1 if the component is < 0, else 1
 vec2 sign_not_zero(vec2 v)
@@ -132,5 +134,5 @@ void main()
     final*=shadow;
 
 
-    gl_FragData[0]=final;
+    p3d_FragData=final;
     }

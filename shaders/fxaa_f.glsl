@@ -10,6 +10,8 @@ uniform float reduce_mul = 1.0/8.0;
 //uniform float FXAA_SUBPIX_SHIFT = 1.0/4.0;
 in vec4 posPos;
 
+out vec4 p3d_FragData;
+
 #define FxaaInt2 ivec2
 #define FxaaFloat2 vec2
 #define FxaaTexLod0(t, p) textureLod(t, p, 0.0)
@@ -77,6 +79,6 @@ vec4 PostFX(sampler2D tex, vec2 uv)
 
 void main()
 {
-  gl_FragData[0] = PostFX(pre_aa, posPos.xy);
+  p3d_FragData = PostFX(pre_aa, posPos.xy);
   //gl_FragColor =texture(pre_aa, posPos.xy);
 }

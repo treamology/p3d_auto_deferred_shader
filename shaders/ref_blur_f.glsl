@@ -8,6 +8,8 @@ uniform float blur;
 
 in vec2 uv;
 
+out vec4 p3d_FragData;
+
 void main()
     {
     vec2 win_size=textureSize(base_ssr, 0).xy;
@@ -45,6 +47,6 @@ void main()
     vec3 tint=texture(albedo_tex,uv).rgb;
     out_tex.rgb*=mix(vec3(0.0), tint, metallic)*(1.0-roughness);
 
-    gl_FragData[0] = out_tex;
+    p3d_FragData = out_tex;
     }
 

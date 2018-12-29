@@ -4,6 +4,8 @@ uniform sampler2D input_tex;
 
 in vec2 uv;
 
+out vec4 p3d_FragData;
+
 void main()
     {
     vec2 pixel = vec2(1.0, 1.0)/textureSize(input_tex, 0).xy;
@@ -16,6 +18,6 @@ void main()
     result.g = texture(input_tex, uv +uv*pixel* chroma_distort.y).g;
     result.b = texture(input_tex, uv +uv*pixel* chroma_distort.z).b;
 
-    gl_FragData[0] = result;
+    p3d_FragData = result;
     }
 

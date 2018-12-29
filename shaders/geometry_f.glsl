@@ -7,6 +7,8 @@ in vec3 N;
 in vec3 TS_V;
 //in vec4 V;
 
+out vec4 p3d_FragData;
+
 uniform sampler2D tex_diffuse; //rgba color texture
 #ifndef DISABLE_NORMALMAP
 uniform sampler2D tex_normal; //rgba normal+gloss texture
@@ -146,7 +148,7 @@ void main()
     float glow=rgma_map.g;
     float metallic=rgma_map.b;
 
-    gl_FragData[0]=vec4(color_map.rgb, glow);
-    //gl_FragData[0]=vec4(1.0, 1.0, 1.0, 1.0);
-    gl_FragData[1]=vec4(pack_normal_octahedron(n.xyz), roughness, metallic);
+    p3d_FragData=vec4(color_map.rgb, glow);
+    //p3d_FragData=vec4(1.0, 1.0, 1.0, 1.0);
+    //p3d_FragData[1]=vec4(pack_normal_octahedron(n.xyz), roughness, metallic);
     }

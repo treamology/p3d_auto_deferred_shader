@@ -20,6 +20,7 @@ in vec4 light_direction[NUM_LIGHTS];
 
 //in vec2 uv;
 
+out vec4 p3d_FragData;
 
 // For each component of v, returns -1 if the component is < 0, else 1
 vec2 sign_not_zero(vec2 v)
@@ -119,6 +120,6 @@ void main()
     vec4 final=pre_light_tex+vec4((color*albedo)+spec, 0.0);
     final.rgb+=glow;
 
-    gl_FragData[0]=final;
+    p3d_FragData=final;
     }
 

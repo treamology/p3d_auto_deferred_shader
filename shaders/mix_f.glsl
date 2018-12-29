@@ -24,6 +24,8 @@ uniform sampler2D noise_tex;
 uniform sampler2D forward_aux_tex;
 //uniform vec2 win_size;
 
+out vec4 p3d_FragData;
+
 vec3 applyColorLUT(sampler2D lut, vec3 color)
     {
     float lutSize = float(textureSize(lut, 0).y);
@@ -100,5 +102,5 @@ void main()
     #endif
 
 
-    gl_FragData[0]=vec4(final_color.rgb, color.a);
+    p3d_FragData=vec4(final_color.rgb, color.a);
     }

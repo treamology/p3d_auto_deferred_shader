@@ -21,6 +21,7 @@ uniform mat4 trans_apiclip_of_camera_to_apiview_of_camera;
 uniform mat4 trans_apiview_of_camera_to_apiclip_of_camera;
 uniform mat4 trans_apiview_of_camera_to_world;
 
+out vec4 p3d_FragData;
 
 //uniform float maxDelta;
 //uniform float rayLength;
@@ -110,7 +111,7 @@ void main()
     //normalized before writing, ready to use
     vec4 normal_roughness_metallic=texture(normal_tex,uv);
     if (normal_roughness_metallic.rb == vec2(0.0))
-        gl_FragData[0] =vec4(0.0, 0.0, 0.0, 1.0);
+        p3d_FragData =vec4(0.0, 0.0, 0.0, 1.0);
     else
         {
         if (normal_roughness_metallic.a > 0.0)
@@ -146,10 +147,10 @@ void main()
             vec4 cube_reflection=texture(cube_tex, reflectionWorld);
             vec3 final=mix(traced.rgb, cube_reflection.rgb, traced.a);
 
-            gl_FragData[0] =vec4(final, 1.0);
+            p3d_FragData =vec4(final, 1.0);
             }
         else
-            gl_FragData[0] =vec4(0.0, 0.0, 0.0, 1.0);
+            p3d_FragData =vec4(0.0, 0.0, 0.0, 1.0);
         }
 
     }

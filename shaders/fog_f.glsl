@@ -12,6 +12,8 @@ uniform float dof_far_max;
 
 in vec2 uv;
 
+out vec4 p3d_FragData;
+
 const float PI = 3.14159265358;
 
 
@@ -28,5 +30,5 @@ void main()
 
     float fog=pow(min(max(view_pos.z+fog_max,0.0)/(fog_max-fog_start), 1.0), 2.0);
 
-    gl_FragData[0]=vec4(mix(fog_color.rgb, color.rgb, fog),1.0-dof);
+    p3d_FragData=vec4(mix(fog_color.rgb, color.rgb, fog),1.0-dof);
     }
